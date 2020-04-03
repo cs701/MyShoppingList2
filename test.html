@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body ng-controller="TheController">
+    <div class="container-fluid">
+        <div class="table-responsive-sm">
+            <table id="userItemList" class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Number</th>
+                    <th>Priority</th>
+    
+    
+                </tr>
+
+                <tr ng-repeat="item in items"><td id={{item.item_name}}>{{item.item_name}}</td>
+                <td>{{item.quantity}}</td><td>{{item.priority}}</td></tr>
+            </table>
+    
+    
+        </div>
+    </div>
+
+
+    <script>
+        function TheController($scope,$http) {
+            var items;
+            
+            $http({method:'GET',url:'http://127.0.0.1:3000/getItems'})
+            .success(function(data){
+                console.log(data);
+                $scope.items = data;
+            });
+
+        }
+        
+    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+
+</html>
