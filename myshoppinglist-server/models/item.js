@@ -1,6 +1,7 @@
 
 const Sequelize = require("sequelize");
 const db = require('../db.js');
+const User = require('./user.js');
 const Item = db.sequelize.define(
     'item',
     {
@@ -39,7 +40,7 @@ const Item = db.sequelize.define(
         user_user_id: {
             type: Sequelize.INTEGER,
             references: {
-                model: 'user',
+                model: User,
                 key: 'user_id'
             }
         }
@@ -52,4 +53,3 @@ const Item = db.sequelize.define(
 
 module.exports  = Item;
 
-// Item.hasOne(User);
