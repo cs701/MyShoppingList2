@@ -4,6 +4,7 @@ const bodyPaser = require('body-parser');
 
 const {mysql} = require('./db.js');
 var itemController = require('./controllers/itemController.js');
+var userController = require('./controllers/userController.js');
 
 var app = express();
 
