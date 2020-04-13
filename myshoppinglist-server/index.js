@@ -19,3 +19,4 @@ app.listen(port, hostName, function () {
 });
 
 app.use('/list', itemController);
+app.use('/user', userController);
