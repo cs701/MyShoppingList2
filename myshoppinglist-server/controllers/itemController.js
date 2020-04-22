@@ -8,7 +8,8 @@ const User  = require('../models/user');
 router.get('/', (req,res) =>{
     Item.findAll()
         .then(items => {
-            res.json(items)
+            res.json(items);
+            console.log(items);
         })
         .catch(err => {
             res.send('error: ' + err)
@@ -51,6 +52,55 @@ router.post('/:uid/new', (req, res) => {
         .catch(err => {
         res.send('error: ' + err)
     })
+});
+
+router.put('/:id/purchased',(req,res)=>{
+  const today=new Date();
+  Item.update({item_purchased:1,item_modified:today},{
+    where:{item_id:req.params.id}
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Tutorial was updated successfully."
+      });
+    } else {
+      res.send({
+        message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error updating Tutorial with id=" + id
+    });
+  });
+})
+
+router.put('/:id/change',(req,res)=>{
+  const today=new Date();
+  Item.update({item_product:req.body.item_product,
+    item_quantity:req.body.item_quantity,
+    item_priority:req.body.item_priority,
+    item_modified:today},{
+    where:{item_id:req.params.id}
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Item was updated successfully."
+      });
+    } else {
+      res.send({
+        message: `Cannot update Item with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error updating Item with id=" + id
+    });
+  });
 })
 
 module.exports = router;

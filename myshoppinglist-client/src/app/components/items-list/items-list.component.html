@@ -1,0 +1,247 @@
+<div class="list row">
+  <!--<div class="col-md-8">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search by title" [(ngModel)]="item_product" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">
+          Search
+        </button>
+      </div>
+    </div>
+  </div> -->
+  <div class="col-md-6">
+    <h1>Shopping List</h1>
+    <!-- <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let item of items; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTutorial(item, i)"
+      ><mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ item.item_product }}
+          </mat-panel-title><mat-panel-title>
+            {{item.item_quantity}}
+          </mat-panel-title><mat-panel-title>
+            {{item.item_priority}}
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <p>This is the primary content of the panel.</p>
+
+      </mat-expansion-panel>
+
+      </li>
+    </ul>-->
+    <mat-tab-group>
+      <mat-tab label="Pending">
+        <div class="container-fluid">
+          <div class="table-responsive-sm">
+            <table class="table table-hover">
+              <tr>
+                <th>Item Name</th>
+                <th>Number</th>
+                <th>Priority</th>
+                <th></th>
+              </tr>
+              <tr *ngFor="let item of items; let i=index" [class.active]="i == currentIndex"
+                (click)="setActiveTutorial(item, i)">
+                <ng-container *ngIf="!item.item_purchased">
+                  <td>{{item.item_product}}</td>
+                  <td>{{item.item_quantity}}</td>
+                  <td>{{item.item_priority}}</td>
+                  <td><button (click)="itemPurchased(item)" class="btn btn-success" style="font-size: 75%;">√</button></td>
+                </ng-container>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Purchased">
+        <div class="container-fluid">
+          <div class="table-responsive-sm">
+            <table class="table table-hover">
+              <tr>
+                <th>Item Name</th>
+                <th>Number</th>
+                <th>Priority</th>
+                <th></th>
+              </tr>
+              <tr *ngFor="let item of items; let i=index" [class.active]="i == currentIndex"
+                (click)="setActiveTutorial(item, i)">
+                <ng-container *ngIf="item.item_purchased">
+                  <td>{{item.item_product}}</td>
+                  <td>{{item.item_quantity}}</td>
+                  <td>{{item.item_priority}}</td>
+                </ng-container>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+
+
+    <!--<div class="container-fluid">
+      <div class="table-responsive-sm">
+        <table class="table table-hover">
+          <tr>
+            <th>Item Name</th>
+            <th>Number</th>
+            <th>Priority</th>
+          </tr>
+
+
+          <tr *ngFor="let item of items; let i=index" [class.active]="i == currentIndex"
+            (click)="setActiveTutorial(item, i)">
+            <td>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{item.item_product}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <input type="text"><button>change</button>
+              </mat-expansion-panel>
+            </td>
+            <td>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{item.item_quantity}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <input type="text"><button>change</button>
+              </mat-expansion-panel>
+            </td>
+            <td>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{item.item_priority}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <input type="text"><button>change</button>
+              </mat-expansion-panel>
+            </td>
+
+          </tr>
+        </table>
+      </div>
+    </div>
+ -->
+
+
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
+      Remove All
+    </button>
+
+  </div>
+
+
+  <div class="col-md-6" style="width: 10px;">
+    <div *ngIf="currentItem">
+      <h1>Item Details</h1>
+
+      <form>
+        <div class="form-group row">
+          <label for="newName" class="col-sm-3 col-form-label">Item Name</label>
+          <div class="col-sm-8">
+            <input type="text" [(ngModel)]="newItem.item_product" style="width: 60%;" class="form-control" name="newName"
+              placeholder="{{currentItem.item_product}}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="newQuan" class="col-sm-3 col-form-label">Quantity</label>
+          <div class="col-sm-8">
+            <input type="text" [(ngModel)]="newItem.item_quantity" style="width: 60%;" class="form-control" name="newQuan"
+              placeholder="{{currentItem.item_quantity}}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="newPrior" class="col-sm-3 col-form-label">Priority</label>
+          <div class="col-sm-8">
+            <select [(ngModel)]="newItem.item_priority" name="newPrior">
+              <ng-container *ngFor="let prior of priors">
+                <option [selected]="prior==currentItem.item_priority" value="{{prior}}">{{prior}}</option>
+              </ng-container>
+
+              </select>
+            <!--<input type="text" [(ngModel)]="newItem.item_priority" style="width: 60%;" class="form-control" name="newPrior"
+              placeholder="{{currentItem.item_priority}}"> -->
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-3 col-form-label">Created on</label>
+          <div class="col-sm-8">
+            <input type="text" readonly  style="width: 60%;" class="form-control" name="createdtime"
+              placeholder="{{currentItem.item_created|slice:0:10}}">
+          </div>
+        </div>
+      </form>
+
+      <a class="badge badge-warning" (click)="change()" style="font-size: 13px;">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentItem">
+      <h1>Item Details</h1>
+
+      <br />
+      <p>Please click on an item...</p>
+    </div>
+
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+           Add a new item
+        </mat-panel-title>
+        <mat-panel-description>
+          Enter the item details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+
+      <table class="table table-hover">
+        <tr>
+          <td><mat-form-field>
+
+            <mat-label>Item name</mat-label>
+            <input matInput required
+            [(ngModel)]="addItem.item_product"
+            name="addName"></mat-form-field>
+          </td>
+          <td><mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input matInput
+            [(ngModel)]="addItem.item_quantity" name="addQuan" type="number" min="1">
+          </mat-form-field></td>
+          <td>
+            <mat-label>&emsp;Priority&emsp;</mat-label>
+      <mat-form-field style="width: 50px;">
+        <mat-select value="3" [(ngModel)]="addItem.item_priority" name="addPrior">
+        <mat-option value="1"> 1</mat-option>
+        <mat-option value="2"> 2</mat-option>
+        <mat-option value="3"> 3</mat-option>
+
+      </mat-select></mat-form-field>
+          </td>  <td> <button type="button" class="btn btn-primary" style="font-size: 90%;" (click)="saveAddItem()">Submit</button></td>
+
+        </tr></table>
+
+
+
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>
