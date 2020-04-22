@@ -1,7 +1,10 @@
 # MyShoppingList2
 Finished functionalities:
+
 Rendering list
+
 Adding new items
+
 Changing attributes (including 'purchased' button)
 
 Front end:
