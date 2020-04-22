@@ -1,12 +1,12 @@
 # MyShoppingList2
 Finished functionalities:
 
-Rendering list
-Adding new items
+Rendering list; 
+Adding new items; 
 Changing attributes (including 'purchased' button)
 
 Front end:
-Item list component
+Item list component; 
 List service
 
 Back end:
