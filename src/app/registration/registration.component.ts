@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   goToRegister(){  
-    const registerObj = {"fname" : this.fname, "lname" : this.lname, "email": this.email, "psw": this.psw, "psw_repeat": this.psw_repeat} 
+    const registerObj = {"fname" : this.fname, "lname" : this.lname, "email": this.email, "psw": this.psw, "psw_repeat": this.psw_repeat,"action":"up"} 
     console.log("register req obj--->"+JSON.stringify(registerObj)); 
     this.router.navigate(['/main']);  
   } 
