@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  @Input() fname = "";
+  @Input() lname = "";
+  @Input() email = "";
+  @Input() psw = "";
+  @Input() psw_repeat = "";
 
   constructor(private router:Router) { }
 
@@ -17,7 +22,9 @@ export class RegistrationComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  goToHome(){    
+  goToRegister(){  
+    const registerObj = {"fname" : this.fname, "lname" : this.lname, "email": this.email, "psw": this.psw, "psw_repeat": this.psw_repeat} 
+    console.log("register req obj--->"+JSON.stringify(registerObj)); 
     this.router.navigate(['/main']);  
   } 
 
