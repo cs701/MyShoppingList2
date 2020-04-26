@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   } 
 
   goToHome(){   
-    const reqObj = {"email":this.email, "password":this.password} ;
+    const reqObj = {"email":this.email, "password":this.password, "action":"in"} ;
     console.log("login req obj--->"+JSON.stringify(reqObj));
     this.router.navigate(['/main']);  
   } 
