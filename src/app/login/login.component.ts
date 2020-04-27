@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,34 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   @Input() email = "";
   @Input() password = "";
-  constructor(private router:Router) { }
+  postId;
+  constructor(private router:Router, private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  goToRegister(){    
-    this.router.navigate(['/registration']);  
+  goToRegister(){   
+    // const reqObj = {"email":this.email, "password":this.password, "action":"up"} ;
+    
+    // this.http.post<any>('http://localhost:1337/login', reqObj).subscribe(data => {
+    //         this.postId = data.id;
+    //         this.router.navigate(['/registration']); 
+    // })
+    this.router.navigate(['/registration']); 
+     
   } 
 
   goToHome(){   
     const reqObj = {"email":this.email, "password":this.password, "action":"in"} ;
     console.log("login req obj--->"+JSON.stringify(reqObj));
-    this.router.navigate(['/main']);  
+    this.http.post<any>('http://localhost:1337/login', reqObj).subscribe(data => {
+            this.postId = data.uid;
+            
+            localStorage.setItem('uid', this.postId);
+            alert("data from local storage---"+localStorage.getItem('uid'));
+            this.router.navigate(['/main']); 
+    })
+    
   } 
 
 }
