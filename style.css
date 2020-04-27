@@ -1,0 +1,55 @@
+/*
+Jieqing 
+CSS file for tesing purpose 
+*/
+
+table { border-collapse: collapse; font-family: Futura, Arial, sans-serif; }
+caption { font-size: 30px; }
+th, td { padding: 2.0em; }
+th, thead { background: #4169E1; color: #fff; border: 0px solid #000; }
+tr { background: whitesmoke; }
+tr:hover { background: #def; }
+td { border-right: 1px solid whitesmoke; }
+table { border: 2px solid whitesmoke; }
+
+button {
+	background-color: grey; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+  }
+
+.rounded {
+	border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 3px whitesmoke;
+	-webkit-box-shadow: 2px 2px 3px whitesmoke;
+	box-shadow: 2px 2px 3px whitesmoke;
+	font-size: 12px;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+input.rounded:focus {
+	border: 4px solid;
+	border-color: whitesmoke;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html lang='en' ng-app="myApp">
+  
+  <head>
+    
+    <title>Shopping List</title>
+
+    <script src="angular10.js"></script>
+    <script src="shopping_list.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body ng-controller="ListControler" ng-init="updateTotal()">
+    <table>
+      <caption style="color:#4169E1"><b>My Shopping List</b></caption>
+      <br>
+      <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Priority</th>
+            <th>Price</th>
+            <th> </th>
+            <th> </th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="item in items">
+        <tr>
+            <td>
+                <input type="text" ng-model="item.name" class="rounded"></input>
+            </td>
+            <td>
+                <input ng-model="item.qty" class="rounded" size="2">
+            </td>
+            <td>
+                <input ng-model="item.price" class="rounded" size="6">
+            </td>
+            <td>
+                {{item.price | currency}}
+            </td>
+            <td>
+            </td>
+            <td>
+                <button ng-click="removeItem($index)">
+                    Remove
+                </button>
+            </td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+            <th></th>
+            <th>
+<!-- The New button will add a new item bject to the model -->
+                <button ng-click="newItem()">
+                    New
+                </button>
+            </th>
+
+            <th></th>
+            <th></th>
+            <th>
+<!-- The Save button stores the list of current items and their state into Local Storage -->
+                <button ng-click="saveItem()">
+                    Save
+                </button>
+            </th>
+            <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
