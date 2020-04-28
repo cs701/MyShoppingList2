@@ -85,6 +85,18 @@ export class ItemsListComponent implements OnInit {
     );
   }
 
+  itemDeleted(item) {
+    this.listService.itemDeleted(item.item_id).subscribe(
+      (response) => {
+        console.log(response);
+        this.retrieveItems();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   searchTitle() {
     this.listService.findByTitle(this.item_product).subscribe(
       (data) => {

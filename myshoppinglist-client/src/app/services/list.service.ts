@@ -47,4 +47,9 @@ export class ListService {
     return this.http.put(`${baseUrl}/${id}/change`,data);
 
   }
+
+  itemDeleted(id){
+    const data=null;
+    return this.http.put(`${baseUrl}/${id}/deleted`,data);
+  }
 }

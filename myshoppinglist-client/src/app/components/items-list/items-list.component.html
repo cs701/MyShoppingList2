@@ -39,19 +39,20 @@
       <mat-tab label="Pending">
         <div class="container-fluid">
           <div class="table-responsive-sm">
-            <table class="table table-hover">
+            <table class="table table-hover" style="vertical-align: middle;">
               <tr>
                 <th>Item Name</th>
                 <th>Number</th>
                 <th>Priority</th>
                 <th></th>
               </tr>
-              <tr *ngFor="let item of items; let i=index" [class.active]="i == currentIndex"
+              <tr *ngFor="let item of items; let i=index" [ngClass]="(i==currentIndex)?'rowSelected':''"
                 (click)="setActiveTutorial(item, i)">
-                <ng-container *ngIf="!item.item_purchased">
+                <ng-container *ngIf="(!item.item_purchased)&&(!item.item_deleted)">
                   <td>{{item.item_product}}</td>
                   <td>{{item.item_quantity}}</td>
-                  <td>{{item.item_priority}}</td>
+                  <td><div [ngClass]="{'greenCircle':item.item_priority==1,
+                  'yellowCircle':item.item_priority==2,'redCircle':item.item_priority==3}"></div></td>
                   <td><button (click)="itemPurchased(item)" class="btn btn-success" style="font-size: 75%;">√</button></td>
                 </ng-container>
               </tr>
@@ -71,7 +72,7 @@
               </tr>
               <tr *ngFor="let item of items; let i=index" [class.active]="i == currentIndex"
                 (click)="setActiveTutorial(item, i)">
-                <ng-container *ngIf="item.item_purchased">
+                <ng-container *ngIf="item.item_purchased&&(!item.item_deleted)">
                   <td>{{item.item_product}}</td>
                   <td>{{item.item_quantity}}</td>
                   <td>{{item.item_priority}}</td>
@@ -132,13 +133,11 @@
         </table>
       </div>
     </div>
- -->
-
-
-
     <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
       Remove All
     </button>
+ -->
+
 
   </div>
 
@@ -165,7 +164,7 @@
         <div class="form-group row">
           <label for="newPrior" class="col-sm-3 col-form-label">Priority</label>
           <div class="col-sm-8">
-            <select [(ngModel)]="newItem.item_priority" name="newPrior">
+            <select class="form-control" style="width: 60%;" [(ngModel)]="newItem.item_priority" name="newPrior">
               <ng-container *ngFor="let prior of priors">
                 <option [selected]="prior==currentItem.item_priority" value="{{prior}}">{{prior}}</option>
               </ng-container>
@@ -188,6 +187,9 @@
       <a class="badge badge-warning" (click)="change()" style="font-size: 13px;">
         Edit
       </a>
+      <button class="badge badge-danger mr-2" style="font-size: 13px;" (click)="itemDeleted(currentItem)">
+        Delete
+      </button>
     </div>
 
     <div *ngIf="!currentItem">

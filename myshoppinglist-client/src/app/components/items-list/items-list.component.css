@@ -1,0 +1,14 @@
+.rowSelected{
+  background-color:#eee;
+}
+.redCircle{
+  width:28px;height:28px;background-color:red;border-radius:50%
+}
+
+.yellowCircle{
+  width:28px;height:28px;background-color:yellow;border-radius:50%
+}
+
+.greenCircle{
+  width:28px;height:28px;background-color:green;border-radius:50%
+}
