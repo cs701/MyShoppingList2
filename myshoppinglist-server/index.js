@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const { mysql } = require("./db.js");
 var itemController = require("./controllers/itemController.js");
+var authController = require("./controllers/auth.js");
 const Item = require("./models/item");
 var app = express();
 
@@ -37,3 +38,4 @@ app.listen(port, hostName, function () {
 });
 
 app.use("/list", itemController);
+app.use('/auth', authController);
