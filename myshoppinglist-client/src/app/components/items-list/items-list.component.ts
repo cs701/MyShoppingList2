@@ -40,7 +40,7 @@ export class ItemsListComponent implements OnInit {
   }
 
   retrieveItems() {
-    this.listService.getAll().subscribe(
+    this.listService.get().subscribe(
       (data) => {
         this.items = data;
         console.log(data);

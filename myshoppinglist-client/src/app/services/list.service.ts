@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 const baseUrl = 'http://localhost:8080/list';
+const uid = localStorage.getItem('uid');
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +13,12 @@ export class ListService {
     return this.http.get(baseUrl);
   }
 
-  get(id) {
-    return this.http.get(`${baseUrl}/${id}`);
+  get() {
+    return this.http.get(`${baseUrl}/${uid}`);
   }
 
   create(data) {
-    return this.http.post(`${baseUrl}/bB9jlfegWjSEye5xB8EDNK0jgJM2/new`, data);
+    return this.http.post(`${baseUrl}/ ${uid}/new`, data);
   }
 
   update(id, data) {
