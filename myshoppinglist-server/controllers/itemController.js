@@ -75,7 +75,30 @@ router.put('/:id/purchased',(req,res)=>{
       message: "Error updating Tutorial with id=" + id
     });
   });
-})
+})；
+
+router.put('/:id/deleted',(req,res)=>{
+  const today=new Date();
+  Item.update({item_deleted:1,item_modified:today},{
+    where:{item_id:req.params.id}
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Item was updated successfully."
+      });
+    } else {
+      res.send({
+        message: `Cannot update Item with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error updating item with id=" + id
+    });
+  });
+});
 
 router.put('/:id/change',(req,res)=>{
   const today=new Date();

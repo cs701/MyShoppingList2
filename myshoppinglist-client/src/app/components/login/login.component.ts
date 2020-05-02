@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {GlobalConstants} from '../../common/global-constants';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   goToHome(){
     const reqObj = {email: this.email, password: this.password, action: 'in'} ;
     console.log('login req obj--->' + JSON.stringify(reqObj));
-    this.http.post<any>('http://localhost:8080/auth/login', reqObj).subscribe(data => {
+    this.http.post<any>(GlobalConstants.apiURL + '/auth/login', reqObj).subscribe(data => {
             this.postId = data.uid;
 
             localStorage.setItem('uid', this.postId);

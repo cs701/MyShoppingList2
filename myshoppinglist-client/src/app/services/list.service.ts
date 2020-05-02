@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-const baseUrl = 'http://localhost:8080/list';
+import { GlobalConstants } from 'src/app/common/global-constants';
+
+const baseUrl = GlobalConstants.apiURL + '/list';
 const uid = localStorage.getItem('uid');
 
 @Injectable({
