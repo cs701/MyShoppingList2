@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { GlobalConstants } from 'src/app/common/global-constants';
 
 @Component({
   selector: 'app-registration',
@@ -24,13 +25,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   goToRegister(){  
-   // const registerObj = {"fname" : this.fname, "lname" : this.lname, "email": this.email, "psw": this.psw, "psw_repeat": this.psw_repeat,"action":"up"} 
-    //console.log("register req obj--->"+JSON.stringify(registerObj)); 
-    //this.router.navigate(['/main']);  
 
     const reqObj = {"email":this.email, "password":this.psw, "action":"up"} ;
     
-    this.http.post<any>('http://localhost:1337/login', reqObj).subscribe(data => {
+    this.http.post<any>(GlobalConstants.apiURL + '/auth/login', reqObj).subscribe(data => {
             this.postId = data.uid;
             //alert(this.postId);
             localStorage.setItem('uid', this.postId);
