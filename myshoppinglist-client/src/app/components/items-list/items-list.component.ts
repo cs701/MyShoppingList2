@@ -141,7 +141,23 @@ export class ItemsListComponent implements OnInit {
   saveAddItem(){
     if(this.addItem.item_product==''){
       alert("Please enter item name!")}else{
-        this.listService.create(this.addItem).subscribe(
+        var existItem=this.searchKey(this.addItem.item_product,this.items);
+        if(existItem!=null){
+          console.log("exist!");
+          var data=existItem;
+          data.item_quantity+=this.addItem.item_quantity;
+          this.listService.itemChange(data.item_id,data).subscribe(
+            (response) => {
+              console.log(response);
+              this.refreshList();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }else{
+          console.log("not exist!");
+          this.listService.create(this.addItem).subscribe(
       (response) => {
         console.log(response);
         this.refreshList();
@@ -150,6 +166,8 @@ export class ItemsListComponent implements OnInit {
         console.log(error);
       }
     );
+        }
+
     this.addItem = {
       item_id: 0,
       item_product: '',
@@ -163,5 +181,13 @@ export class ItemsListComponent implements OnInit {
     };
       }
 
+  }
+  searchKey(itemName,array){
+    for (var i=0; i < array.length; i++) {
+      if (array[i].item_product === itemName&&!array[i].item_purchased&&!array[i].item_deleted) {
+          return array[i];
+      }
+  }
+  return null;
   }
 }
