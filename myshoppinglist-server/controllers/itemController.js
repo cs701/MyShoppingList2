@@ -17,7 +17,7 @@ router.get('/', (req,res) =>{
     }
 )
 router.get('/:uid', (req,res) =>{
-        Item.findOne({
+        Item.findAll({
             where: {
                 user_user_id: req.params.uid
             }

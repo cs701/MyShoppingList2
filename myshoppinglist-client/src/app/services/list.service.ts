@@ -18,11 +18,11 @@ export class ListService {
   }
 
   create(data) {
-    return this.http.post(`${baseUrl}/ ${uid}/new`, data);
+    return this.http.post(`${baseUrl}/${uid}/new`, data);
   }
 
-  update(id, data) {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  update(data) {
+    return this.http.put(`${baseUrl}/${uid}`, data);
   }
 
   delete(id) {
