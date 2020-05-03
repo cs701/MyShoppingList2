@@ -75,7 +75,7 @@ router.put('/:id/purchased',(req,res)=>{
       message: "Error updating Tutorial with id=" + id
     });
   });
-})；
+});
 
 router.put('/:id/deleted',(req,res)=>{
   const today=new Date();

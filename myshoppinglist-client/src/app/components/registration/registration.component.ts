@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { GlobalConstants } from 'src/app/common/global-constants';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   @Input() psw = "";
   @Input() psw_repeat = "";
   postId;
-  constructor(private router:Router,private http: HttpClient) { }
+  constructor(private router: Router, private userSerive: UserService) { }
 
   ngOnInit(): void {
   }
@@ -24,17 +23,12 @@ export class RegistrationComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  goToRegister(){  
+  goToRegister(){
 
-    const reqObj = {"email":this.email, "password":this.psw, "action":"up"} ;
-    
-    this.http.post<any>(GlobalConstants.apiURL + '/auth/login', reqObj).subscribe(data => {
-            this.postId = data.uid;
-            //alert(this.postId);
-            localStorage.setItem('uid', this.postId);
-            //alert("data from local storage---"+localStorage.getItem('uid'));
-            this.router.navigate(['/main']); 
-    })
-  } 
-
+    const reqObj = {email: this.email, password: this.psw, action: 'up'} ;
+    this.userSerive.userLogin(reqObj).subscribe(data => {
+      localStorage.setItem('uid', data.uid);
+      this.router.navigate(['/main']);
+    });
+  }
 }
