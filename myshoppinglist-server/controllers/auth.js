@@ -55,7 +55,8 @@ router.post('/login',function(req,res){
 
   admin.auth().createUser({
     email: email,
-    password: password
+    password: password,
+    displayName: fname
   })
   .then(function(userRecord) {
     // See the UserRecord reference doc for the contents of userRecord.
@@ -72,7 +73,7 @@ router.post('/login',function(req,res){
       con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("1 record inserted");
-        res.json({ uid: userRecord.toJSON().uid})
+        res.json({ uid: userRecord.toJSON().uid,  name: userRecord.toJSON().displayName})
       });
     });
 
@@ -95,9 +96,21 @@ if (action == "in"){
       con.query("SELECT * FROM auth WHERE user_id = '"+uid+"' AND hash_pw='"+ password+ "'", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
+
+        if (result.length < 1){
+          console.log("Auth Failed, wrong username password combination");
+          res.json({ uid: "000" });
+
+        }
+
+        if (result.length > 0){
+          console.log('Successfully fetched user data hi:', userRecord);
+          res.json({ uid: userRecord.toJSON().uid, name: userRecord.toJSON().displayName });
+
+        }
       });
-      console.log('Successfully fetched user data:', userRecord.toJSON().uid);
-      res.json({ uid: userRecord.toJSON().uid})
+
+
     })
     .catch(function(error) {
      console.log('Error fetching user data:', error);
