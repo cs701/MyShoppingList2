@@ -51,7 +51,7 @@ export class ItemsListComponent implements OnInit {
   }
 
   retrieveItems() {
-    this.listService.get().subscribe(
+    this.listService.get(localStorage.getItem('uid')).subscribe(
       (data) => {
         this.items = data;
         console.log(data);
