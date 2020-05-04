@@ -3,6 +3,7 @@ import { ListService } from 'src/app/services/list.service';
 import {Router} from '@angular/router';
 import { MatExpansionPanel } from '@angular/material/expansion';
 
+
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -41,17 +42,17 @@ export class ItemsListComponent implements OnInit {
   constructor(private router: Router, private listService: ListService) {}
 
   ngOnInit() {
-
-    const currentUser = localStorage.getItem('uid');
-    if (!currentUser) {
+    const val = localStorage.getItem('uid');
+    if (!val) {
       this.router.navigate(['/login']);
     } else {
+      console.log(val);
       this.retrieveItems();
     }
   }
 
   retrieveItems() {
-    this.listService.get().subscribe(
+    this.listService.get(localStorage.getItem('uid')).subscribe(
       (data) => {
         this.items = data;
         console.log(data);
