@@ -12,3 +12,7 @@
 .greenCircle{
   width:28px;height:28px;background-color:green;border-radius:50%
 }
+
+button {
+  margin-right: 10px;
+}

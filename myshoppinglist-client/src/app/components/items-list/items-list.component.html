@@ -132,12 +132,10 @@
         </div>
       </form>
 
-      <a class="badge badge-warning" (click)="change()" style="font-size: 13px;">
-        Edit
-      </a>
-      <button class="badge badge-danger mr-2" style="font-size: 13px;" (click)="itemDeleted(currentItem)">
-        Delete
-      </button>
+      <button mat-raised-button color="primary" (click)="change()">Edit</button>
+      <button mat-raised-button color="warn" (click)="itemDeleted(currentItem)">Delete</button>
+
+
     </div>
 
     <div *ngIf="!currentItem">

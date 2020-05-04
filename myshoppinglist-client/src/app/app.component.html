@@ -3,7 +3,7 @@
     <mat-toolbar-row>
       <span *ngIf="!currentUser" class="example-spacer">Welcome to My Shopping List</span>
       <span *ngIf="currentUser" class="example-spacer">My Shopping List</span>
-      <button *ngIf="currentUser" mat-stroked-button color="accent" (click)="userLogout()">Logout</button>
+      <button *ngIf="currentUser" mat-raised-button color="accent" (click)="userLogout()">Logout</button>
 
     </mat-toolbar-row>
   </mat-toolbar>

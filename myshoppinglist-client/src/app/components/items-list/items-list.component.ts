@@ -43,7 +43,7 @@ export class ItemsListComponent implements OnInit {
 
   ngOnInit() {
     const val = localStorage.getItem('uid');
-    if (!val) {
+    if (!localStorage.getItem('uid')) {
       this.router.navigate(['/login']);
     } else {
       console.log(val);
