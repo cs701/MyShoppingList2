@@ -15,8 +15,8 @@ export class ListService {
     return this.http.get(baseUrl);
   }
 
-  get() {
-    return this.http.get(`${baseUrl}/${uid}`);
+  get(id) {
+    return this.http.get(`${baseUrl}/${id}`);
   }
 
   create(data) {
