@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from 'src/app/services/list.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-items-list',
@@ -33,10 +34,16 @@ export class ItemsListComponent implements OnInit {
   };
 
 
-  constructor(private listService: ListService) {}
+  constructor(private router: Router, private listService: ListService) {}
 
   ngOnInit() {
-    this.retrieveItems();
+
+    const currentUser = localStorage.getItem('uid');
+    if (!currentUser) {
+      this.router.navigate(['/login']);
+    } else {
+      this.retrieveItems();
+    }
   }
 
   retrieveItems() {

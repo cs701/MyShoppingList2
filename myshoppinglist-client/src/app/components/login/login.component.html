@@ -10,11 +10,7 @@
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" id="password" name="password" [(ngModel)]="password" required>
-      <button type="submit" class="registerbtn" (click)="goToHome();">Login</button>
-
-      <button type="submit" class="registerbtn" onclick="googleLogin();">Login using google</button>
-    </div>
-    <div class="container signin">
-      <p>Don't have an account? <a id="register_switcher" [routerLink]="" (click)="goToRegister()">Register</a>.</p>
+      <button type="submit" mat-raised-button color="primary" (click)="goToHome();">Login</button>
+      <button mat-raised-button [routerLink]="" (click)="goToRegister()">Register</button>
     </div>
   </form>

@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
     const reqObj = {email: this.email, password: this.psw, action: 'up'} ;
     this.userSerive.userLogin(reqObj).subscribe(data => {
       localStorage.setItem('uid', data.uid);
-      this.router.navigate(['/main']);
+      this.router.navigate(['/']);
     });
   }
 }

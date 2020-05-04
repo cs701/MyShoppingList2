@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     const reqObj = {email: this.email, password: this.password, action: 'in'} ;
     this.userSerive.userLogin(reqObj).subscribe(data => {
       localStorage.setItem('uid', data.uid);
-      this.router.navigate(['/main']);
+      localStorage.setItem('displayName', data.name);
+      this.router.navigateByUrl('/');
     });
   }
 

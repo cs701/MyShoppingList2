@@ -1,16 +1,12 @@
 <div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">My Shopping List</a>
-    <!--<div class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="items" class="nav-link">Item List</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="add" class="nav-link">Add</a>
-      </li>
-    </div> -->
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span *ngIf="!currentUser" class="example-spacer">Welcome to My Shopping List</span>
+      <span *ngIf="currentUser" class="example-spacer">My Shopping List</span>
+      <button *ngIf="currentUser" mat-stroked-button color="accent" (click)="userLogout()">Logout</button>
 
-  </nav>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
   <div class="container mt-3">
     <router-outlet></router-outlet>
