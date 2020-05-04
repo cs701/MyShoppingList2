@@ -69,12 +69,13 @@
                 <th>Priority</th>
                 <th></th>
               </tr>
-              <tr *ngFor="let item of items; let i=index" [class.active]="i == currentIndex"
+              <tr *ngFor="let item of items; let i=index" [ngClass]="(i==currentIndex)?'rowSelected':''" [class.active]="i == currentIndex"
                 (click)="setActiveTutorial(item, i)">
                 <ng-container *ngIf="item.item_purchased&&(!item.item_deleted)">
                   <td>{{item.item_product}}</td>
                   <td>{{item.item_quantity}}</td>
-                  <td>{{item.item_priority}}</td>
+                  <td><div [ngClass]="{'greenCircle':item.item_priority==1,
+                    'yellowCircle':item.item_priority==2,'redCircle':item.item_priority==3}"></div></td>
                 </ng-container>
               </tr>
             </table>
@@ -148,7 +149,7 @@
 
   </div>
   <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel #panel1 id="ePanel" >
       <mat-expansion-panel-header>
         <mat-panel-title>
            Add a new item

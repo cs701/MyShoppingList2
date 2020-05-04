@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListService } from 'src/app/services/list.service';
 import {Router} from '@angular/router';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-items-list',
@@ -8,6 +9,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./items-list.component.css'],
 })
 export class ItemsListComponent implements OnInit {
+
+  @ViewChild('panel1') firstPanel: MatExpansionPanel;
+
   panelOpenState = false;
 
   createItem= { item_product: null, item_quantity: null, item_priority: null };
@@ -62,6 +66,7 @@ export class ItemsListComponent implements OnInit {
     this.retrieveItems();
     this.currentItem = null;
     this.currentIndex = -1;
+    this.firstPanel.close();
   }
 
   setActiveTutorial(item, index) {
